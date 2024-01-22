@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo Blog Web App</title>
-</head>
-<body>
-
-</body>
-</html>
+<%- include("partials/header.ejs") %>
+        <% if (posts.size === 0) { %>
+            <h1>This is currently an empty blog! Create some post</h1>
+        <% } else { %>
+            <h1>All Posts:</h1>
+            <ul>
+                <% for (const [title, post] of posts) { %>
+                <li>
+                    <form action="/post" method="post">
+                        <input type="hidden" name="title" id="title" value=<%= title %>>
+                        <button type="submit"><%= title %></button>
+                    </form>
+                </li>
+                <% } %>
+            </ul>
+        <% } %>
+<%- include("partials/footer.ejs") %>
